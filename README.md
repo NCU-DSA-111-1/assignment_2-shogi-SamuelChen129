@@ -10,33 +10,25 @@ You can do two things in this program:
 1. open the terminal
 2. enter the instruction below in the terminal
 ```
-gcc -o show.exe show.cpp
+g++ SHOUGI.c tools.c -o SHOUGI
 ```
 ## open a new game
 1. After compiling , enter the instruction below:
 ```
-./show.exe
+./SHOUGI.exe -n -s new_game_file_name
 ```
-2. enter the instruction below,"new_game_file_name" can be any name you want.     
-```
--n -s new_game_file_name
-```
-3. during a game , there are 4 things players can do:
+2. during a game , there are 4 things players can do:
 * moving a chess on the checkerboard and enhanced the ability of the chess if the player wants and has the right to do it. (enter 'a')
 * put a chess that has been eaten.(enter 'd')
 * undo the last step.(enter '0')
 * save the process of the game.(enter 's').  
 The saved data will be stored in the file that has the name which is "new_game_file_name".
 ## load the recorded game 
-1. After compiling , enter the instruction below:
+1. After compiling , enter the instruction below("old_game_file_name" is the name of the file of the game you want to replay.):
 ```
-./show.exe
+./SHOUGI.exe -l old_game_file_name
 ```
-2. enter the instruction below,"old_game_file_name" is the name of the file of the game you want to replay.     
-```
--l old_game_file_name
-```
-3. you can _enter 'f'_ to show the next step or _enter 'b'_ to show the last step of the the game.
+2. you can _enter 'f'_ to show the next step or _enter 'b'_ to show the last step of the the game.
 ## important funcitons used in this program
 ### show_checkerboard
 this function shows the distribution of the chesses on the board. Players can determine the move of a chess by the row and column labels on the edge.   
@@ -44,7 +36,7 @@ this function shows the distribution of the chesses on the board. Players can de
 void show_checkerboard(bool player,int board[3][MAXCHESS])
 {
     bool have_chess=0;
-    setlocale(LC_CTYPE, "");
+    setlocale(LC_ALL, "chs");
     if(player){wprintf(L" _9 _ _8 _ _7 _ _6 _ _5 _ _4 _ _3 _ _2 _ _1 _\n");}
     if(!player){wprintf(L" _1 _ _2 _ _3 _ _4 _ _5 _ _6 _ _7 _ _8 _ _9 _\n");}
     for(int j=1;j<MAXROW+1;j++)
@@ -916,9 +908,7 @@ After you moving a chess, this program will check if the moved chess can be enha
             }
         }
 ```
-* timing
-```sh
 
-```
+
 
 
